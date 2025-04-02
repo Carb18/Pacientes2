@@ -2,19 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return ['Laravel' => app()->version()];
+// Ruta para API/version (opcional)
+Route::get('/version', function () {
+    return response()->json(['Laravel' => app()->version()]);
 });
 
-require __DIR__.'/auth.php';
+// Ruta para CSRF (necesaria para Sanctum)
+Route::get('/sanctum/csrf-cookie', function () {
+    return response()->json(['message' => 'CSRF cookie set']);
+});
+
+// ÚNICA RUTA PARA VUE - Todas las rutas frontend
+Route::get('/{any}', function () {
+    return view('app'); // Asegúrate de tener resources/views/app.blade.php
+})->where('any', '.*'); // Captura absolutamente todas las rutas
