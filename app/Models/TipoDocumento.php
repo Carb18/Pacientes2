@@ -10,7 +10,7 @@ class TipoDocumento extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre'];
+    protected $fillable = ['nombre', 'created_at', 'updated_at'];
 
     // Relación con pacientes
     public function pacientes(): HasMany

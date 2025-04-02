@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tipo_documento_id')->constrained();
+            $table->foreignId('tipo_documento_id')->constrained('tipos_documento'); // Plural
             $table->string('numero_documento')->unique();
             $table->string('nombre1');
             $table->string('nombre2')->nullable();
             $table->string('apellido1');
             $table->string('apellido2')->nullable();
-            $table->foreignId('genero_id')->constrained();
-            $table->foreignId('departamento_id')->constrained();
-            $table->foreignId('municipio_id')->constrained();
+            $table->foreignId('genero_id')->constrained('generos'); // Plural
+            $table->foreignId('departamento_id')->constrained('departamentos'); // Plural
+            $table->foreignId('municipio_id')->constrained('municipios'); // Plural
             $table->string('correo')->unique();
             $table->timestamps();
         });

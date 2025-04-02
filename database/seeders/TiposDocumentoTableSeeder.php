@@ -2,18 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\TipoDocumento;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TiposDocumentoTableSeeder extends Seeder
 {
     public function run()
     {
-        $tipos = [
-            ['nombre' => 'Cédula de Ciudadanía'],
-            ['nombre' => 'Tarjeta de Identidad'],
-        ];
-
-        TipoDocumento::insert($tipos);
+    
+        DB::table('tipos_documento')->insert([
+            ['nombre' => 'Cédula de Ciudadanía', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre' => 'Tarjeta de Identidad', 'created_at' => now(), 'updated_at' => now()]
+        ]);
     }
 }
